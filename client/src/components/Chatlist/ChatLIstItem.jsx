@@ -8,6 +8,8 @@ import { FaCamera, FaMicrophone } from "react-icons/fa";
 
 function ChatLIstItem({ data, isContactPage = false }) {
   const [{ userInfo, currentChatUser }, dispatch] = useStateProvider();
+  
+
   const handleContactClick = () => {
     // if(currentChatUser?.id===data?.id){
     if (!isContactPage) {
@@ -71,7 +73,9 @@ function ChatLIstItem({ data, isContactPage = false }) {
                 sm:max-w-[250px] md:max-w-[300px] lg:max-w-[200px] xl:max-w-[300px] 
                 
                 "
-                >
+                  >
+                    
+                    
                   {data.senderId === userInfo.id && (
                     <MessageStatus messageStatus={data.messageStatus} />
                   )}

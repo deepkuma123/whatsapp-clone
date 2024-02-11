@@ -1,6 +1,6 @@
 import { useStateProvider } from "@/context/StateContext";
 import { calculateTime } from "@/utils/CalculateTime";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import MessageStatus from "../common/MessageStatus";
 import ImageMessage from "./ImageMessage";
 import dynamic from "next/dynamic";
@@ -8,6 +8,21 @@ const VoiceMessage = dynamic(() => import("./VoiceMessage"), { ssr: false });
 
 function ChatContainer() {
   const [{ messages, currentChatUser, userInfo }] = useStateProvider();
+  const containerRef = useRef([null]);
+
+  // useEffect(() => {
+  //   const container = containerRef.current;
+  //   if (container) {
+  //     // Scroll to the bottom of the container
+  //     container.scrollTop = container.scrollHeight;
+
+  //     // Optionally, if you want to scroll smoothly, you can use scrollIntoView
+  //     const lastMessage = container.lastElementChild;
+  //     if (lastMessage) {
+  //       lastMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+  //     }
+  //   }
+  // }, [userInfo]);
   return (
     <div className="h-[80vh] w-full relative flex-grow overflow-auto custom-scrollbar">
       <div className=" bg-chat-background bg-fixed h-full w-full opacity-5 fixed left-0 top-0 z-0"></div>

@@ -15,6 +15,7 @@ export const initialState = {
   voiceCall: undefined,
   incomingVoiceCall: undefined,
   incomingVideoCall: undefined,
+  message:[],
 };
 
 const reducer = (state, action) => {
@@ -109,8 +110,22 @@ const reducer = (state, action) => {
         voiceCall:undefined,
         videoCall:undefined,
         incomingVideoCall:undefined,
-        incomingVoiceCall:undefined,
-        
+        incomingVoiceCall:undefined,      
+      }
+    case reducercases.SET_EXIT_CHAT:
+      return {
+        ...state,
+        currentChatUser:undefined,
+      }
+    case reducercases.SET_LIST_DATA:
+      return {
+        ...state,
+        contactData: action.contactData
+      }
+    case reducercases.SET_EFFECT_DATA:
+      return {
+        ...state,
+        message:action.message
       }
     default:
       return state;

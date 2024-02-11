@@ -10,7 +10,8 @@ function ContactsList() {
   const [allContacts, setallContacts] = useState([]);
   const [searchTerm, setsearchTerm] = useState("");
   const [searchContacts, setsearchContacts] = useState([]);
-  const [{ userInfo }, dispatch] = useStateProvider();
+  const [{ userInfo , socket}, dispatch] = useStateProvider();
+  console.log(socket);
 
   useEffect(() => {
     if (searchTerm.length) {

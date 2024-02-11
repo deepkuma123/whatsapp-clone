@@ -88,6 +88,10 @@ function Main() {
             ...data.message,
           },
         });
+        dispatch({
+          type: reducercases.SET_EFFECT_DATA,
+          message: data.message, // Use data.message instead of message
+        });
       });
 
       socket.current.on("incoming-voice-call", ({ from, roomId, callType }) => {
@@ -115,9 +119,19 @@ function Main() {
         });
       });
 
-      // socket.on('accept-incoming-call', ({ id }) => {
-      //   const sendUserSocket
-      // })
+      socket.current.on("online-users", ({ OnlineUsers }) => {
+        dispatch({ type: reducercases.SET_ONLINE_USERS, OnlineUsers });
+      });
+
+      // Listen for 'new-message' event from the server
+      socket.current.on("new-message", ( users ) => {
+        dispatch({ type: reducercases.SET_ONLINE_USERS, OnlineUsers });
+        dispatch({
+          type: reducercases.SET_USER_CONTACTS,
+          userContacts: users,
+        });
+        console.log("ye wala");
+      });
 
       setSocketEvent(true);
     }

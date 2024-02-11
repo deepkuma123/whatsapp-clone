@@ -14,10 +14,11 @@ function login() {
   const [{ userInfo, newUser }, dispatch] = useStateProvider();
 
   useEffect(() => {
-    if (userInfo?.id && !newUser) router.push("/login");
+    if (userInfo?.id && !newUser) router.push("/");
   }, [userInfo,newUser]);
 
   const handleLogin = async () => {
+    
     const provider = new GoogleAuthProvider();
     const {
       user: { displayName: name, email, photoURL: ProfileImage },

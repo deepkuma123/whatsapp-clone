@@ -32,6 +32,7 @@ function MessageBar() {
           to: currentChatUser.id,
         },
       });
+      
       if (response.status === 201) {
         socket.current.emit("send-msg", {
           to: currentChatUser?.id,
@@ -83,6 +84,8 @@ function MessageBar() {
         from: userInfo?.id,
         message,
       });
+      // console.log(socket);
+
       socket.current.emit("send-msg", {
         to: currentChatUser?.id,
         from: userInfo?.id,
@@ -95,6 +98,12 @@ function MessageBar() {
         },
         fromSelf: true,
       });
+
+      dispatch({
+        type: reducercases.SET_EFFECT_DATA,
+        message:data.message
+      })
+
       setMessage("");
     } catch (err) {
       console.log(err);
